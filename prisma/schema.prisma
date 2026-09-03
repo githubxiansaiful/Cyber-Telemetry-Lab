@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model InspectionLog {
+  id                  String   @id @default(cuid())
+  createdAt           DateTime @default(now())
+  visitorId           String?
+  ipAddress           String?
+  country             String?
+  city                String?
+  region              String?
+  userAgent           String?
+  browserName         String?
+  browserVersion      String?
+  osName              String?
+  osVersion           String?
+  deviceType          String?
+  deviceMemory        Float?
+  hardwareConcurrency Int?
+  screenResolution    String?
+  colorDepth          Int?
+  pixelRatio          Float?
+  timezone            String?
+  language            String?
+  languages           String?
+  gpuVendor           String?
+  gpuRenderer         String?
+  canvasHash          String?
+  audioHash           String?
+  batteryLevel        Float?
+  isCharging          Boolean?
+  connectionType      String?
+  downlink            Float?
+  rtt                 Int?
+  cookiesEnabled      Boolean?
+  doNotTrack          String?
+  adBlockerDetected   Boolean?
+  incognitoDetected   Boolean?
+  touchSupport        Boolean?
+  rawHeaders          Json?
+  rawTelemetry        Json?
+
+  @@index([createdAt])
+  @@index([visitorId])
+}
